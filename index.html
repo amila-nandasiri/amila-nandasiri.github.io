@@ -15,15 +15,12 @@
     <style>
         /* --- CSS VARIABLES (LIGHT MODE) --- */
         :root {
-            /* Changed to Light Colors */
-            --bg-color: #F3F4F6;       /* Light Gray Background */
-            --card-bg: #FFFFFF;        /* White Cards */
-            --text-main: #1F2937;      /* Dark Gray Text */
-            --text-muted: #6B7280;     /* Medium Gray Text */
-            
-            /* Adjusted Accents for White Background */
-            --accent-color: #0d9488;   /* Teal (Darker for visibility on white) */
-            --accent-dark: #0f766e;    /* Darker Teal for buttons */
+            --bg-color: #F3F4F6;
+            --card-bg: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+            --accent-color: #0d9488;
+            --accent-dark: #0f766e;
             --gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
         }
 
@@ -43,182 +40,120 @@
             padding: 20px;
         }
 
-        /* --- HERO SECTION & PROFILE PIC --- */
-        header {
-            text-align: center;
-            padding: 60px 20px;
-        }
+        /* --- HERO SECTION --- */
+        header { text-align: center; padding: 60px 20px; }
 
-        /* The Profile Picture Circle */
         .profile-pic {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
+            width: 160px; height: 160px;
+            border-radius: 50%; object-fit: cover;
             border: 4px solid var(--accent-color);
-            padding: 4px;
-            background: var(--card-bg);
+            padding: 4px; background: var(--card-bg);
             margin-bottom: 20px;
-            /* Softer shadow for light mode */
             box-shadow: 0 10px 25px rgba(13, 148, 136, 0.15); 
         }
 
         h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
+            font-size: 3rem; font-weight: 800; margin-bottom: 10px;
             background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
+        .subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; }
 
         /* --- BUTTONS --- */
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--accent-color); /* Changed to use main accent */
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            cursor: pointer;
+            display: inline-block; padding: 12px 30px;
+            background: var(--accent-color); color: white;
+            text-decoration: none; border-radius: 50px;
+            font-weight: 600; transition: all 0.3s ease;
+            border: 2px solid transparent; cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .btn:hover {
-            background: transparent;
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+            background: transparent; border-color: var(--accent-color);
+            color: var(--accent-color); transform: translateY(-3px);
         }
 
         .btn-outline {
-            background: transparent;
-            border: 2px solid var(--text-muted);
-            color: var(--text-muted); /* Added text color */
-            margin-left: 10px;
-            box-shadow: none;
+            background: transparent; border: 2px solid var(--text-muted);
+            color: var(--text-muted); margin-left: 10px; box-shadow: none;
         }
         
-        .btn-outline:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
+        .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
         /* --- SECTIONS --- */
         .section-title {
-            margin-top: 60px;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            border-left: 5px solid var(--accent-color);
-            padding-left: 15px;
+            margin-top: 60px; margin-bottom: 20px; font-size: 1.8rem;
+            border-left: 5px solid var(--accent-color); padding-left: 15px;
             color: var(--text-main);
         }
 
         .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            /* Changed shadow to be subtle dark on white */
+            background-color: var(--card-bg); border-radius: 16px;
+            padding: 30px; margin-bottom: 30px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* --- ACTIVITIES GALLERY --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            /* Changed background for light mode contrast */
-            background: #f9fafb; 
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s;
-            border: 1px solid #e5e7eb;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            opacity: 1; /* Removed opacity for clearer images in light mode */
-            transition: opacity 0.3s;
-        }
-
-        .gallery-content {
-            padding: 15px;
-        }
-
-        .gallery-title {
-            font-weight: bold;
-            color: var(--text-main);
-            margin-bottom: 5px;
-        }
-
-        .gallery-date {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            font-weight: 600;
-        }
-
-        /* --- TECH GRID --- */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
-
-        .tech-item {
-            /* Changed to light gray background */
-            background: #f3f4f6;
-            padding: 20px;
-            border-radius: 12px;
-            transition: background 0.3s;
-        }
-        
-        .tech-item:hover {
-            background: #e5e7eb;
-        }
-        
-        .tech-item i { font-size: 2rem; color: var(--accent-color); margin-bottom: 10px; }
-        .tech-item span { color: var(--text-main); font-weight: 500; }
-
-        /* --- PROGRESS BARS --- */
-        .progress-bar {
-            background: #e5e7eb; /* Light gray track */
-            border-radius: 10px;
-            height: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .progress-fill { height: 100%; background: var(--gradient); }
-
-        /* --- MAP --- */
+        /* --- MAP & TRAVEL SECTION --- */
         #map {
-            height: 400px; width: 100%; border-radius: 12px;
-            /* Removed filters so map shows in standard color */
-            border: 1px solid #e5e7eb;
+            height: 500px; width: 100%; border-radius: 12px;
+            border: 1px solid #e5e7eb; z-index: 1;
         }
+
+        /* Styling the Popup Image inside the map */
+        .leaflet-popup-content img {
+            width: 100%; border-radius: 8px; margin-top: 5px; cursor: zoom-in;
+            border: 2px solid var(--accent-color);
+        }
+        .leaflet-popup-content b { font-size: 1.1rem; color: var(--accent-dark); }
+        .leaflet-popup-content p { margin: 5px 0 0 0; font-size: 0.9rem; }
+
+        /* --- PROJECTS LAB SECTION --- */
+        .project-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background: white; padding: 25px; border-radius: 12px;
+            border: 1px solid #e5e7eb; transition: transform 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .project-icon { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 15px; }
+        .status-badge {
+            position: absolute; top: 20px; right: 20px;
+            background: #dcfce7; color: #166534;
+            padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+        }
+
+        /* --- MODAL (Lightbox & App Demo) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 9999;
+            display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
         
+        /* Image Modal Content */
+        .modal-img { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        
+        /* App Demo Modal Content */
+        .app-demo-container {
+            background: white; width: 350px; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); font-family: 'Inter', sans-serif;
+        }
+        .weather-app { padding: 0; text-align: center; color: #333; }
+        .weather-header { background: #3b82f6; color: white; padding: 20px; }
+        .weather-temp { font-size: 4rem; font-weight: bold; margin: 20px 0; }
+        .weather-details { display: flex; justify-content: space-around; padding: 20px; background: #f0f9ff; }
+        .close-modal {
+            position: absolute; top: 20px; right: 20px;
+            color: white; font-size: 2rem; cursor: pointer;
+        }
+
         /* --- FOOTER --- */
         footer {
             text-align: center; padding: 50px 20px; color: var(--text-muted);
@@ -250,87 +185,21 @@
             </p>
         </div>
 
-        <h2 class="section-title">Activities & Training</h2>
-        <div class="gallery-grid">
-            
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=400" alt="Training" class="gallery-img">
-                <div class="gallery-content">
-                    <div class="gallery-title">Leadership Workshop</div>
-                    <div class="gallery-date">Dec 2024 - Maldives</div>
-                </div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=400" alt="Team Building" class="gallery-img">
-                <div class="gallery-content">
-                    <div class="gallery-title">Team Outbound</div>
-                    <div class="gallery-date">Nov 2024 - Philippines</div>
-                </div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=400" alt="Conference" class="gallery-img">
-                <div class="gallery-content">
-                    <div class="gallery-title">Finance Summit</div>
-                    <div class="gallery-date">Oct 2024 - Singapore</div>
-                </div>
-            </div>
-
-        </div>
-
-        <h2 class="section-title">My Global Journey</h2>
+        <h2 class="section-title">My Travels</h2>
         <div class="card">
+            <p style="margin-bottom: 15px; color: var(--text-muted);">
+                I have traveled across Asia to expand my cultural and professional horizons. 
+                <br><strong><i class="fa-solid fa-hand-pointer"></i> Click on a marker</strong> to see a photo from that trip.
+            </p>
             <div id="map"></div>
         </div>
 
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="card">
-            <div class="tech-grid">
-                <div class="tech-item"><i class="fa-solid fa-database"></i><br><span>Oracle</span></div>
-                <div class="tech-item"><i class="fa-solid fa-file-invoice-dollar"></i><br><span>QuickBooks</span></div>
-                <div class="tech-item"><i class="fa-solid fa-calculator"></i><br><span>AccPac</span></div>
-                <div class="tech-item"><i class="fa-brands fa-html5"></i><br><span>HTML5</span></div>
-                <div class="tech-item"><i class="fa-brands fa-github"></i><br><span>GitHub</span></div>
-            </div>
-        </div>
-
-        <h2 class="section-title">Active Project</h2>
-        <div class="card">
-            <h3><i class="fa-solid fa-plane-departure" style="color: var(--accent-color);"></i> Aviation Finance Optimization</h3>
-            <br>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">
-                Managing end-to-end Accounts Receivable for the world's largest seaplane fleet.
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color: var(--text-main); font-weight:600;">
-                <span>Collection Strategy</span><span>85%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+        <h2 class="section-title">Projects Lab</h2>
+        <div class="project-grid">
             
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color: var(--text-main); font-weight:600;">
-                <span>KPI Dashboard</span><span>60%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 60%; background: #f59e0b;"></div></div>
-        </div>
-
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Amila Nandasiri.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px;">Built with <i class="fa-solid fa-code"></i> & Hosted on GitHub Pages</p>
-    </footer>
-
-    <script>
-        var map = L.map('map').setView([10.0, 95.0], 4);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19, attribution: '© OpenStreetMap'
-        }).addTo(map);
-        
-        var kandy = L.marker([7.2906, 80.6337]).addTo(map).bindPopup("<b>Kandy</b><br>Career Start");
-        var manila = L.marker([14.5995, 120.9842]).addTo(map).bindPopup("<b>Manila</b><br>Head of Finance");
-        var male = L.marker([4.1755, 73.5093]).addTo(map).bindPopup("<b>Malé</b><br>Current Role: Aviation");
-        male.openPopup();
-    </script>
-
-</body>
-</html>
+            <div class="project-card">
+                <span class="status-badge">Active</span>
+                <i class="fa-solid fa-plane-departure project-icon"></i>
+                <h3>Aviation Finance Optimization</h3>
+                <p style="color: #666; margin: 10px 0;">Managing end-to-end Accounts Receivable for the world's largest seaplane fleet.</p>
+                <div style="margin
