@@ -13,15 +13,18 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <style>
-        /* --- CSS VARIABLES --- */
+        /* --- CSS VARIABLES (LIGHT MODE) --- */
         :root {
-            --bg-color: #0B0C10;
-            --card-bg: #1F2833;
-            --text-main: #FFFFFF;
-            --text-muted: #C5C6C7;
-            --accent-color: #66FCF1;
-            --accent-dark: #45A29E;
-            --gradient: linear-gradient(135deg, #66FCF1 0%, #45A29E 100%);
+            /* Changed to Light Colors */
+            --bg-color: #F3F4F6;       /* Light Gray Background */
+            --card-bg: #FFFFFF;        /* White Cards */
+            --text-main: #1F2937;      /* Dark Gray Text */
+            --text-muted: #6B7280;     /* Medium Gray Text */
+            
+            /* Adjusted Accents for White Background */
+            --accent-color: #0d9488;   /* Teal (Darker for visibility on white) */
+            --accent-dark: #0f766e;    /* Darker Teal for buttons */
+            --gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
         }
 
         /* --- GLOBAL RESET --- */
@@ -56,7 +59,8 @@
             padding: 4px;
             background: var(--card-bg);
             margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(102, 252, 241, 0.3);
+            /* Softer shadow for light mode */
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.15); 
         }
 
         h1 {
@@ -78,7 +82,7 @@
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background: var(--accent-dark);
+            background: var(--accent-color); /* Changed to use main accent */
             color: white;
             text-decoration: none;
             border-radius: 50px;
@@ -86,6 +90,7 @@
             transition: all 0.3s ease;
             border: 2px solid transparent;
             cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .btn:hover {
@@ -93,12 +98,20 @@
             border-color: var(--accent-color);
             color: var(--accent-color);
             transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
         }
 
         .btn-outline {
             background: transparent;
             border: 2px solid var(--text-muted);
+            color: var(--text-muted); /* Added text color */
             margin-left: 10px;
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
         }
 
         /* --- SECTIONS --- */
@@ -106,8 +119,9 @@
             margin-top: 60px;
             margin-bottom: 20px;
             font-size: 1.8rem;
-            border-left: 4px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
             padding-left: 15px;
+            color: var(--text-main);
         }
 
         .card {
@@ -115,8 +129,9 @@
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
+            /* Changed shadow to be subtle dark on white */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         /* --- ACTIVITIES GALLERY --- */
@@ -127,26 +142,25 @@
         }
 
         .gallery-item {
-            background: rgba(255,255,255,0.05);
+            /* Changed background for light mode contrast */
+            background: #f9fafb; 
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s;
+            border: 1px solid #e5e7eb;
         }
 
         .gallery-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
         }
 
         .gallery-img {
             width: 100%;
             height: 180px;
             object-fit: cover;
-            opacity: 0.8;
+            opacity: 1; /* Removed opacity for clearer images in light mode */
             transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover .gallery-img {
-            opacity: 1;
         }
 
         .gallery-content {
@@ -162,6 +176,7 @@
         .gallery-date {
             font-size: 0.8rem;
             color: var(--accent-color);
+            font-weight: 600;
         }
 
         /* --- TECH GRID --- */
@@ -173,16 +188,23 @@
         }
 
         .tech-item {
-            background: rgba(255,255,255,0.05);
+            /* Changed to light gray background */
+            background: #f3f4f6;
             padding: 20px;
             border-radius: 12px;
+            transition: background 0.3s;
+        }
+        
+        .tech-item:hover {
+            background: #e5e7eb;
         }
         
         .tech-item i { font-size: 2rem; color: var(--accent-color); margin-bottom: 10px; }
+        .tech-item span { color: var(--text-main); font-weight: 500; }
 
         /* --- PROGRESS BARS --- */
         .progress-bar {
-            background: rgba(255,255,255,0.1);
+            background: #e5e7eb; /* Light gray track */
             border-radius: 10px;
             height: 10px;
             overflow: hidden;
@@ -193,14 +215,14 @@
         /* --- MAP --- */
         #map {
             height: 400px; width: 100%; border-radius: 12px;
-            filter: grayscale(100%) invert(100%) contrast(85%); 
+            /* Removed filters so map shows in standard color */
+            border: 1px solid #e5e7eb;
         }
-        .leaflet-popup-content-wrapper { filter: invert(100%) grayscale(100%); }
-
+        
         /* --- FOOTER --- */
         footer {
             text-align: center; padding: 50px 20px; color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px;
+            border-top: 1px solid #e5e7eb; margin-top: 50px;
         }
     </style>
 </head>
@@ -222,7 +244,7 @@
 
         <h2 class="section-title">Professional Summary</h2>
         <div class="card">
-            <p style="font-size: 1.1rem;">
+            <p style="font-size: 1.1rem; color: var(--text-main);">
                 An experienced <strong>Head of Finance</strong> and <strong>Strategic Advisor</strong> with a passion for bridging the gap between financial data and technology. 
                 Currently optimizing aviation revenue streams in the Maldives while expanding my technical expertise in Web Development.
             </p>
@@ -265,11 +287,11 @@
         <h2 class="section-title">Technical Skills</h2>
         <div class="card">
             <div class="tech-grid">
-                <div class="tech-item"><i class="fa-solid fa-database"></i><span>Oracle</span></div>
-                <div class="tech-item"><i class="fa-solid fa-file-invoice-dollar"></i><span>QuickBooks</span></div>
-                <div class="tech-item"><i class="fa-solid fa-calculator"></i><span>AccPac</span></div>
-                <div class="tech-item"><i class="fa-brands fa-html5"></i><span>HTML5</span></div>
-                <div class="tech-item"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+                <div class="tech-item"><i class="fa-solid fa-database"></i><br><span>Oracle</span></div>
+                <div class="tech-item"><i class="fa-solid fa-file-invoice-dollar"></i><br><span>QuickBooks</span></div>
+                <div class="tech-item"><i class="fa-solid fa-calculator"></i><br><span>AccPac</span></div>
+                <div class="tech-item"><i class="fa-brands fa-html5"></i><br><span>HTML5</span></div>
+                <div class="tech-item"><i class="fa-brands fa-github"></i><br><span>GitHub</span></div>
             </div>
         </div>
 
@@ -280,15 +302,15 @@
             <p style="color: var(--text-muted); margin-bottom: 20px;">
                 Managing end-to-end Accounts Receivable for the world's largest seaplane fleet.
             </p>
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color: var(--text-main); font-weight:600;">
                 <span>Collection Strategy</span><span>85%</span>
             </div>
             <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
             
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.9rem; color: var(--text-main); font-weight:600;">
                 <span>KPI Dashboard</span><span>60%</span>
             </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 60%; background: orange;"></div></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 60%; background: #f59e0b;"></div></div>
         </div>
 
     </div>
