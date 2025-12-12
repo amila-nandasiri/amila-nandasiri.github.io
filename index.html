@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amila Nandasiri | Finance & Tech Portfolio</title>
+    <title>Amila Nandasiri | Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -13,302 +13,279 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <style>
-        /* --- CSS VARIABLES --- */
+        /* --- CSS VARIABLES (Updated to match screenshot) --- */
         :root {
-            --bg-color: #0B0C10;
-            --card-bg: #1F2833;
-            --text-main: #FFFFFF;
-            --text-muted: #C5C6C7;
-            --accent-color: #66FCF1;
-            --accent-dark: #45A29E;
-            --gradient: linear-gradient(135deg, #66FCF1 0%, #45A29E 100%);
+            --bg-color: #1a1a1a;       /* Dark Charcoal (match bottom of screenshot) */
+            --text-main: #FFFFFF;      /* White text */
+            --text-sub: #999999;       /* Light gray subtext */
+            --accent-color: #D4E157;   /* Lime Green (matches the 'All' active filter) */
         }
 
         /* --- GLOBAL RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Open Sans', sans-serif; /* Body text */
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* --- HERO SECTION & PROFILE PIC --- */
+        /* --- HERO SECTION (The Big Image) --- */
         header {
+            position: relative;
+            height: 90vh; /* Takes up 90% of screen height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 60px 20px;
+            overflow: hidden;
         }
 
-        /* The Profile Picture Circle */
-        .profile-pic {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-color);
-            padding: 4px;
-            background: var(--card-bg);
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(102, 252, 241, 0.3);
+        /* The Background Image Logic */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            /* This loads your profile.jpg */
+            background: url('profile.jpg') no-repeat center center/cover;
+            /* This makes it black and white like the 'Charles Anderson' photo */
+            filter: grayscale(100%) brightness(0.6); 
+            z-index: -1;
         }
 
         h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--accent-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
             color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            cursor: pointer;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
 
-        .btn:hover {
-            background: transparent;
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--text-muted);
-            margin-left: 10px;
-        }
-
-        /* --- SECTIONS --- */
-        .section-title {
-            margin-top: 60px;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* --- ACTIVITIES GALLERY --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover .gallery-img {
-            opacity: 1;
-        }
-
-        .gallery-content {
-            padding: 15px;
-        }
-
-        .gallery-title {
-            font-weight: bold;
-            color: var(--text-main);
+        .hello-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
             margin-bottom: 5px;
         }
 
-        .gallery-date {
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* --- NAVIGATION / CTA --- */
+        .cta-group { margin-top: 40px; }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             font-size: 0.8rem;
-            color: var(--accent-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s;
         }
 
-        /* --- TECH GRID --- */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 20px;
+        .btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* --- CONTENT CONTAINER --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-header {
             text-align: center;
+            margin-bottom: 60px;
         }
 
-        .tech-item {
-            background: rgba(255,255,255,0.05);
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--accent-color); /* The Lime Green accent */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* --- PORTFOLIO GRID (Matches "Featured Portfolio") --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            background: #222;
+            height: 300px;
+            overflow: hidden;
+            group: pointer;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            filter: grayscale(50%); /* Subtle desaturation to match theme */
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             padding: 20px;
-            border-radius: 12px;
+            transform: translateY(100px); /* Hidden by default */
+            transition: 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        /* --- TECH SKILLS (Minimalist List) --- */
+        .tech-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            padding-top: 40px;
         }
         
-        .tech-item i { font-size: 2rem; color: var(--accent-color); margin-bottom: 10px; }
-
-        /* --- PROGRESS BARS --- */
-        .progress-bar {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            height: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .progress-fill { height: 100%; background: var(--gradient); }
+        .tech-item { text-align: center; color: var(--text-sub); }
+        .tech-item i { font-size: 2rem; margin-bottom: 10px; display: block; color: var(--text-main); }
 
         /* --- MAP --- */
         #map {
-            height: 400px; width: 100%; border-radius: 12px;
-            filter: grayscale(100%) invert(100%) contrast(85%); 
+            height: 400px; width: 100%; 
+            filter: grayscale(100%) invert(100%) contrast(90%); 
         }
-        .leaflet-popup-content-wrapper { filter: invert(100%) grayscale(100%); }
 
         /* --- FOOTER --- */
         footer {
-            text-align: center; padding: 50px 20px; color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px;
+            text-align: center; padding: 40px;
+            background: #111;
+            color: #555;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
 
+    <header>
+        <div class="hero-bg"></div>
+        
+        <div class="hello-text">Hello, I'm</div>
+        <h1>Amila Nandasiri</h1>
+        <p class="subtitle">AND THIS IS MY PORTFOLIO</p>
+        
+        <div class="cta-group">
+            <a href="#" class="btn">Download CV</a>
+        </div>
+    </header>
+
     <div class="container">
         
-        <header>
-            <img src="profile.jpg" class="profile-pic">
-            
-            <h1>Amila Nandasiri</h1>
-            <p class="subtitle">Strategic Finance Director & Tech Explorer</p>
-            
-            <div class="cta-group">
-                <a href="#" class="btn"><i class="fa-solid fa-download"></i> Download CV</a>
-                <a href="https://www.linkedin.com/in/amila-devapriya" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-            </div>
-        </header>
+        <div class="section-header">
+            <h2>About Me</h2>
+            <p>Strategic Finance Director & Tech Explorer</p>
+        </div>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 60px auto; color: #ccc;">
+            An experienced Head of Finance and Strategic Advisor with a passion for bridging the gap between financial data and technology. 
+            Currently optimizing aviation revenue streams in the Maldives while expanding my technical expertise in Web Development.
+        </p>
 
-        <h2 class="section-title">Professional Summary</h2>
-        <div class="card">
-            <p style="font-size: 1.1rem;">
-                An experienced <strong>Head of Finance</strong> and <strong>Strategic Advisor</strong> with a passion for bridging the gap between financial data and technology. 
-                Currently optimizing aviation revenue streams in the Maldives while expanding my technical expertise in Web Development.
+        <div class="section-header">
+            <h2>Featured Activities</h2>
+            <p style="word-spacing: 20px; font-weight: 600;">
+                <span style="color: var(--accent-color);">ALL</span> 
+                <span>TRAINING</span> 
+                <span>LEADERSHIP</span> 
+                <span>EVENTS</span>
             </p>
         </div>
 
-        <h2 class="section-title">Activities & Training</h2>
-        <div class="gallery-grid">
-            
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=400" alt="Training" class="gallery-img">
-                <div class="gallery-content">
-                    <div class="gallery-title">Leadership Workshop</div>
-                    <div class="gallery-date">Dec 2024 - Maldives</div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=400" alt="Training" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 style="color:white; font-family:'Montserrat'">Leadership Workshop</h3>
+                    <p style="color:var(--accent-color); font-size:0.8rem;">MALDIVES</p>
                 </div>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=400" alt="Team Building" class="gallery-img">
-                <div class="gallery-content">
-                    <div class="gallery-title">Team Outbound</div>
-                    <div class="gallery-date">Nov 2024 - Philippines</div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=400" alt="Team" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 style="color:white; font-family:'Montserrat'">Team Outbound</h3>
+                    <p style="color:var(--accent-color); font-size:0.8rem;">PHILIPPINES</p>
                 </div>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=400" alt="Conference" class="gallery-img">
-                <div class="gallery-content">
-                    <div class="gallery-title">Finance Summit</div>
-                    <div class="gallery-date">Oct 2024 - Singapore</div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=400" alt="Summit" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 style="color:white; font-family:'Montserrat'">Finance Summit</h3>
+                    <p style="color:var(--accent-color); font-size:0.8rem;">SINGAPORE</p>
                 </div>
             </div>
-
         </div>
 
-        <h2 class="section-title">My Global Journey</h2>
-        <div class="card">
-            <div id="map"></div>
-        </div>
-
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="card">
-            <div class="tech-grid">
-                <div class="tech-item"><i class="fa-solid fa-database"></i><span>Oracle</span></div>
-                <div class="tech-item"><i class="fa-solid fa-file-invoice-dollar"></i><span>QuickBooks</span></div>
-                <div class="tech-item"><i class="fa-solid fa-calculator"></i><span>AccPac</span></div>
-                <div class="tech-item"><i class="fa-brands fa-html5"></i><span>HTML5</span></div>
-                <div class="tech-item"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
-            </div>
-        </div>
-
-        <h2 class="section-title">Active Project</h2>
-        <div class="card">
-            <h3><i class="fa-solid fa-plane-departure" style="color: var(--accent-color);"></i> Aviation Finance Optimization</h3>
-            <br>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">
-                Managing end-to-end Accounts Receivable for the world's largest seaplane fleet.
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
-                <span>Collection Strategy</span><span>85%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
-            
-            <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
-                <span>KPI Dashboard</span><span>60%</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 60%; background: orange;"></div></div>
+        <div class="tech-list">
+            <div class="tech-item"><i class="fa-solid fa-database"></i>Oracle</div>
+            <div class="tech-item"><i class="fa-solid fa-file-invoice-dollar"></i>QuickBooks</div>
+            <div class="tech-item"><i class="fa-solid fa-calculator"></i>AccPac</div>
+            <div class="tech-item"><i class="fa-brands fa-html5"></i>HTML5</div>
+            <div class="tech-item"><i class="fa-brands fa-github"></i>GitHub</div>
         </div>
 
     </div>
 
-    <footer>
-        <p>&copy; 2025 Amila Nandasiri.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px;">Built with <i class="fa-solid fa-code"></i> & Hosted on GitHub Pages</p>
-    </footer>
-
+    <div id="map"></div>
     <script>
-        var map = L.map('map').setView([10.0, 95.0], 4);
+        var map = L.map('map', {scrollWheelZoom: false}).setView([10.0, 95.0], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19, attribution: '© OpenStreetMap'
+            attribution: '© OpenStreetMap'
         }).addTo(map);
         
-        var kandy = L.marker([7.2906, 80.6337]).addTo(map).bindPopup("<b>Kandy</b><br>Career Start");
-        var manila = L.marker([14.5995, 120.9842]).addTo(map).bindPopup("<b>Manila</b><br>Head of Finance");
-        var male = L.marker([4.1755, 73.5093]).addTo(map).bindPopup("<b>Malé</b><br>Current Role: Aviation");
-        male.openPopup();
+        L.marker([7.2906, 80.6337]).addTo(map).bindPopup("<b>Kandy</b><br>Career Start");
+        L.marker([14.5995, 120.9842]).addTo(map).bindPopup("<b>Manila</b><br>Head of Finance");
+        var male = L.marker([4.1755, 73.5093]).addTo(map).bindPopup("<b>Malé</b><br>Current Role");
     </script>
+
+    <footer>
+        <p>&copy; 2025 Amila Nandasiri. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
