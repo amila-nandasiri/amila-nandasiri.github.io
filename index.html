@@ -82,7 +82,7 @@
         
         .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
-        /* --- SECTIONS --- */
+        /* --- SECTIONS GENERAL --- */
         .section-title {
             margin-top: 60px; margin-bottom: 20px; font-size: 1.8rem;
             border-left: 5px solid var(--accent-color); padding-left: 15px;
@@ -96,10 +96,42 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
+        /* --- ACTIVITIES GALLERY --- */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            background: #f9fafb; border-radius: 12px; overflow: hidden;
+            transition: transform 0.3s; border: 1px solid #e5e7eb;
+        }
+
+        .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.05); }
+
+        .gallery-img { width: 100%; height: 180px; object-fit: cover; }
+
+        .gallery-content { padding: 15px; }
+        .gallery-title { font-weight: bold; margin-bottom: 5px; }
+        .gallery-date { font-size: 0.8rem; color: var(--accent-color); font-weight: 600; }
+
+        /* --- TECH SKILLS GRID --- */
+        .tech-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px; text-align: center;
+        }
+
+        .tech-item {
+            background: #f3f4f6; padding: 20px; border-radius: 12px; transition: background 0.3s;
+        }
+        .tech-item:hover { background: #e5e7eb; }
+        .tech-item i { font-size: 2rem; color: var(--accent-color); margin-bottom: 10px; }
+        .tech-item span { font-weight: 500; }
+
         /* --- MAP & TRAVEL SECTION --- */
         #map {
             height: 500px; width: 100%; border-radius: 12px;
-            border: 1px solid #e5e7eb; z-index: 1;
+            border: 1px solid #e5e7eb; z-index: 1; /* Low z-index so modal sits on top */
         }
 
         /* Styling the Popup Image inside the map */
@@ -110,96 +142,4 @@
         .leaflet-popup-content b { font-size: 1.1rem; color: var(--accent-dark); }
         .leaflet-popup-content p { margin: 5px 0 0 0; font-size: 0.9rem; }
 
-        /* --- PROJECTS LAB SECTION --- */
-        .project-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .project-card {
-            background: white; padding: 25px; border-radius: 12px;
-            border: 1px solid #e5e7eb; transition: transform 0.3s;
-            position: relative; overflow: hidden;
-        }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .project-icon { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 15px; }
-        .status-badge {
-            position: absolute; top: 20px; right: 20px;
-            background: #dcfce7; color: #166534;
-            padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
-        }
-
-        /* --- MODAL (Lightbox & App Demo) --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 9999;
-            display: none; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s ease;
-        }
-        .modal-overlay.active { display: flex; opacity: 1; }
-        
-        /* Image Modal Content */
-        .modal-img { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        
-        /* App Demo Modal Content */
-        .app-demo-container {
-            background: white; width: 350px; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); font-family: 'Inter', sans-serif;
-        }
-        .weather-app { padding: 0; text-align: center; color: #333; }
-        .weather-header { background: #3b82f6; color: white; padding: 20px; }
-        .weather-temp { font-size: 4rem; font-weight: bold; margin: 20px 0; }
-        .weather-details { display: flex; justify-content: space-around; padding: 20px; background: #f0f9ff; }
-        .close-modal {
-            position: absolute; top: 20px; right: 20px;
-            color: white; font-size: 2rem; cursor: pointer;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center; padding: 50px 20px; color: var(--text-muted);
-            border-top: 1px solid #e5e7eb; margin-top: 50px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        
-        <header>
-            <img src="profile.jpg" alt="Amila Nandasiri" class="profile-pic">
-            
-            <h1>Amila Nandasiri</h1>
-            <p class="subtitle">Strategic Finance Director & Tech Explorer</p>
-            
-            <div class="cta-group">
-                <a href="#" class="btn"><i class="fa-solid fa-download"></i> Download CV</a>
-                <a href="https://www.linkedin.com/in/amila-devapriya" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-            </div>
-        </header>
-
-        <h2 class="section-title">Professional Summary</h2>
-        <div class="card">
-            <p style="font-size: 1.1rem; color: var(--text-main);">
-                An experienced <strong>Head of Finance</strong> and <strong>Strategic Advisor</strong> with a passion for bridging the gap between financial data and technology. 
-                Currently optimizing aviation revenue streams in the Maldives while expanding my technical expertise in Web Development.
-            </p>
-        </div>
-
-        <h2 class="section-title">My Travels</h2>
-        <div class="card">
-            <p style="margin-bottom: 15px; color: var(--text-muted);">
-                I have traveled across Asia to expand my cultural and professional horizons. 
-                <br><strong><i class="fa-solid fa-hand-pointer"></i> Click on a marker</strong> to see a photo from that trip.
-            </p>
-            <div id="map"></div>
-        </div>
-
-        <h2 class="section-title">Projects Lab</h2>
-        <div class="project-grid">
-            
-            <div class="project-card">
-                <span class="status-badge">Active</span>
-                <i class="fa-solid fa-plane-departure project-icon"></i>
-                <h3>Aviation Finance Optimization</h3>
-                <p style="color: #666; margin: 10px 0;">Managing end-to-end Accounts Receivable for the world's largest seaplane fleet.</p>
-                <div style="margin
+        /* --- PROJECTS LAB SECTION ---
