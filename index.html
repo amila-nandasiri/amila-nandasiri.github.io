@@ -3,279 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amila Nandasiri | Strategic Finance & Tech</title>
+    <title>Amila Nandasiri | Finance & Tech Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <style>
-        /* CSS Styles - This makes it look good */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header {
-            background-color: #2c3e50; /* Dark Blue for Professionalism */
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-        h1 { margin: 0; font-size: 2.5rem; }
-        p.subtitle { font-size: 1.2rem; color: #bdc3c7; }
-        
-        /* Container for content */
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        /* --- CSS VARIABLES (The Design System) --- */
+        :root {
+            --bg-color: #0B0C10;       /* Deep Black/Navy */
+            --card-bg: #1F2833;        /* Dark Gray for cards */
+            --text-main: #FFFFFF;      /* White text */
+            --text-muted: #C5C6C7;     /* Light Gray for secondary text */
+            --accent-color: #66FCF1;   /* Electric Cyan for highlights */
+            --accent-dark: #45A29E;    /* Darker Cyan */
+            --gradient: linear-gradient(135deg, #66FCF1 0%, #45A29E 100%);
         }
 
-        /* Section Cards */
-        .card {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h2 { border-bottom: 2px solid #3498db; padding-bottom: 0.5rem; }
+        /* --- GLOBAL RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Simple Button */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- LAYOUT CONTAINER --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- HERO SECTION (Top) --- */
+        header {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            /* Gradient Text Effect */
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* --- BUTTONS --- */
         .btn {
             display: inline-block;
-            background: #3498db;
+            padding: 12px 30px;
+            background: var(--accent-dark);
             color: white;
-            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
-        .btn:hover { background: #2980b9; }
-        /* Tech Grid Styles */
-.tech-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; /* Centers items */
-    margin-top: 20px;
-}
 
-.tech-item {
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-    width: 100px; /* Fixed width for uniformity */
-    transition: transform 0.2s; /* Smooth animation */
-}
+        .btn:hover {
+            background: transparent;
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 252, 241, 0.3);
+        }
 
-.tech-item:hover {
-    transform: translateY(-5px); /* Moves up slightly when hovered */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-color: #3498db;
-}
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-muted);
+            margin-left: 10px;
+        }
 
-.tech-item i {
-    font-size: 2.5rem; /* Icon size */
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
+        /* --- SECTIONS & CARDS --- */
+        .section-title {
+            margin-top: 60px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+        }
 
-.tech-item span {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-}   
-        /* Map Styles */
-#map {
-    height: 400px; /* Essential: The map must have height */
-    width: 100%;
-    border-radius: 8px;
-    margin-top: 20px;
-    z-index: 1; /* Ensures it sits correctly on the page */
-}
-        /* Status Dashboard Styles */
-.status-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns */
-    gap: 15px;
-    margin-top: 15px;
-}
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05); /* Subtle border */
+        }
 
-.status-item {
-    background: #f1f2f6;
-    padding: 10px;
-    border-radius: 5px;
-}
+        /* --- TECH STACK GRID --- */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
 
-.label {
-    font-size: 0.8rem;
-    color: #7f8c8d;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+        .tech-item {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+        }
 
-.value {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #2c3e50;
-}
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
 
-/* The Progress Bar Construction */
-.progress-container {
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    height: 8px;
-    width: 100%;
-    margin-top: 5px;
-}
+        /* --- PROGRESS BARS --- */
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
 
-.progress-fill {
-    background-color: #27ae60; /* Green for success */
-    height: 100%;
-    border-radius: 10px;
-    width: 0%; /* We set the width in HTML */
-    transition: width 1s ease-in-out;
-}
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+        }
+
+        /* --- MAP STYLING --- */
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 12px;
+            /* This filter turns the standard map into "Dark Mode" */
+            filter: grayscale(100%) invert(100%) contrast(85%); 
+        }
+        
+        /* Fix for Map popups being inverted by the filter above */
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            filter: invert(100%) grayscale(100%); 
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Amila Devapriya Nandasiri</h1>
-        <p class="subtitle">Head of Finance | Strategic Advisor | Tech Enthusiast</p>
-    </header>
-
     <div class="container">
         
+        <header>
+            <h1>Amila Nandasiri</h1>
+            <p class="subtitle">Strategic Finance Director & Tech Explorer</p>
+            
+            <div class="cta-group">
+                <a href="#" class="btn"><i class="fa-solid fa-download"></i> Download CV</a>
+                <a href="https://www.linkedin.com/in/amila-devapriya" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </header>
+
+        <h2 class="section-title">Professional Summary</h2>
         <div class="card">
-            <h2>About Me</h2>
-            <p>I am a strategic finance leader with over a decade of experience bridging financial strategy, operational excellence, and technology. From Kandy to Manila to the Maldives, I help businesses optimize their financial potential.</p>
+            <p style="font-size: 1.1rem;">
+                An experienced <strong>Head of Finance</strong> and <strong>Strategic Advisor</strong> with a passion for bridging the gap between financial data and technology. 
+                Currently optimizing aviation revenue streams in the Maldives while expanding my technical expertise in Web Development and Cloud Hosting.
+            </p>
         </div>
-<div class="card">
-    <h2>My Global Journey</h2>
-    <p>From Srilanka to the Philippines to the Maldives. Click the pins to see my role in each location.</p>
-    
-    <div id="map"></div>
+
+        <h2 class="section-title">My Global Journey</h2>
+        <div class="card">
+            <p style="margin-bottom: 15px; color: var(--text-muted);">From Sri Lanka to the Philippines to the Maldives.</p>
+            <div id="map"></div>
+        </div>
+
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="card">
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fa-solid fa-database"></i>
+                    <span>Oracle</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>QuickBooks</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>AccPac</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fa-brands fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fa-solid fa-cloud"></i>
+                    <span>Hosting</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Active Project: Aviation Finance</h2>
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3><i class="fa-solid fa-plane-departure" style="color: var(--accent-color);"></i> AR Optimization</h3>
+                <span style="background: rgba(102, 252, 241, 0.1); color: var(--accent-color); padding: 5px 10px; border-radius: 20px; font-size: 0.8rem;">In Progress</span>
+            </div>
+            
+            <p style="color: var(--text-muted); margin-bottom: 20px;">
+                Managing end-to-end Accounts Receivable for the world's largest seaplane fleet. Focus on KPI oversight and automated reporting.
+            </p>
+
+            <div class="progress-label">
+                <span>Collection Strategy Implementation</span>
+                <span>85%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+
+            <div class="progress-label">
+                <span>KPI Dashboard Development</span>
+                <span>60%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%; background: orange;"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Amila Nandasiri. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">
+            Built with <i class="fa-solid fa-code"></i> & Hosted on GitHub Pages
+        </p>
+    </footer>
 
     <script>
-        // 1. Initialize the map and set the view to see South Asia/SE Asia
-        // Coordinates: [Latitude, Longitude], Zoom Level
         var map = L.map('map').setView([10.0, 95.0], 4);
 
-        // 2. Add the "Tile Layer" (The actual map images)
-        // We are using OpenStreetMap which is free
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        // 3. Add Your Pins (Markers)
-
-        // Pin 1: Kandy, Sri Lanka
-        var kandy = L.marker([7.2906, 80.6337]).addTo(map);
-        kandy.bindPopup("<b>Kandy, Sri Lanka</b><br>Where it started.<br>Audit & Credit Management.");
-
-        // Pin 2: Manila, Philippines
-        var manila = L.marker([14.5995, 120.9842]).addTo(map);
-        manila.bindPopup("<b>Manila, Philippines</b><br>Head of Finance & Director.<br>Managed Corporate Finance & Board Advisory.");
-
-        // Pin 3: Malé, Maldives
-        var male = L.marker([4.1755, 73.5093]).addTo(map);
-        male.bindPopup("<b>Malé, Maldives</b><br>Current Role: Aviation Finance.<br>Managing AR for the world's largest seaplane fleet.");
+        // Custom Icon Style (Optional, keeps default blue for now)
         
-        // Open the Maldives popup by default so they see your current job first
+        // Pins
+        var kandy = L.marker([7.2906, 80.6337]).addTo(map).bindPopup("<b>Kandy</b><br>Career Start");
+        var manila = L.marker([14.5995, 120.9842]).addTo(map).bindPopup("<b>Manila</b><br>Head of Finance");
+        var male = L.marker([4.1755, 73.5093]).addTo(map).bindPopup("<b>Malé</b><br>Current Role: Aviation");
+        
         male.openPopup();
     </script>
-</div>
-        <div class="card">
-    <h2><i class="fa-solid fa-plane-departure"></i> Active Project: Aviation Finance</h2>
-    <p><strong>Objective:</strong> End-to-end optimization of Accounts Receivable for the world's largest seaplane fleet.</p>
-    
-    <div class="status-grid">
-        <div class="status-item">
-            <div class="label">Role</div>
-            <div class="value">Accountant (AR Lead)</div>
-        </div>
-        
-        <div class="status-item">
-            <div class="label">Primary Tool</div>
-            <div class="value">Oracle Fusion Cloud</div>
-        </div>
-    </div>
 
-    <br>
-
-    <div class="label">Collection Strategy Optimization</div>
-    <div class="progress-container">
-        <div class="progress-fill" style="width: 85%;"></div>
-    </div>
-    <p style="font-size: 0.8rem; color: #7f8c8d; margin-top: 2px;">85% - Process Implemented</p>
-
-    <br>
-
-    <div class="label">KPI Dashboard Integration</div>
-    <div class="progress-container">
-        <div class="progress-fill" style="width: 60%; background-color: #f39c12;"></div>
-    </div>
-    <p style="font-size: 0.8rem; color: #7f8c8d; margin-top: 2px;">60% - In Development</p>
-</div>
-
-<div class="card">
-    <h2>Technology Stack</h2>
-    <p>Combining Financial Expertise with Modern Web Dev.</p>
-    
-    <h3>Financial Systems</h3>
-    <div class="tech-grid">
-        <div class="tech-item">
-            <i class="fa-solid fa-database"></i>
-            <span>Oracle</span>
-        </div>
-        <div class="tech-item">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-            <span>QuickBooks</span>
-        </div>
-        <div class="tech-item">
-            <i class="fa-solid fa-calculator"></i>
-            <span>AccPac</span>
-        </div>
-        <div class="tech-item">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Analytics</span>
-        </div>
-    </div>
-
-    <h3>Web Development</h3>
-    <div class="tech-grid">
-        <div class="tech-item">
-            <i class="fa-brands fa-html5" style="color: #e34c26;"></i>
-            <span>HTML5</span>
-        </div>
-        <div class="tech-item">
-            <i class="fa-brands fa-css3-alt" style="color: #264de4;"></i>
-            <span>CSS3</span>
-        </div>
-        <div class="tech-item">
-            <i class="fa-brands fa-github"></i>
-            <span>GitHub</span>
-        </div>
-    </div>
-</div>
-
-        <div class="card">
-            <h2>Connect</h2>
-            <a href="https://www.linkedin.com/in/amila-devapriya" class="btn">LinkedIn Profile</a>
-            <a href="mailto:amiladnandasiri@gmail.com" class="btn">Email Me</a>
-        </div>
-
-    </div>
-<footer style="text-align: center; padding: 20px; color: #bdc3c7; font-size: 0.9rem;">
-    <p>&copy; 2025 Amila Nandasiri. All rights reserved.</p>
-    <p>Built with <i class="fa-solid fa-code"></i> and Hosted on GitHub Pages.</p>
-</footer>
 </body>
 </html>
