@@ -98,6 +98,49 @@
     margin-top: 20px;
     z-index: 1; /* Ensures it sits correctly on the page */
 }
+        /* Status Dashboard Styles */
+.status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.status-item {
+    background: #f1f2f6;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.label {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* The Progress Bar Construction */
+.progress-container {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 8px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    background-color: #27ae60; /* Green for success */
+    height: 100%;
+    border-radius: 10px;
+    width: 0%; /* We set the width in HTML */
+    transition: width 1s ease-in-out;
+}
     </style>
 </head>
 <body>
@@ -150,10 +193,37 @@
     </script>
 </div>
         <div class="card">
-            <h2>Current Focus: Aviation Finance</h2>
-            <p><strong>Role:</strong> Accountant at Trans Maldivian Airways</p>
-            <p>Currently managing end-to-end Accounts Receivable for the world's largest seaplane operator. My focus is on optimizing collection strategies and leveraging data for financial decision-making.</p>
+    <h2><i class="fa-solid fa-plane-departure"></i> Active Project: Aviation Finance</h2>
+    <p><strong>Objective:</strong> End-to-end optimization of Accounts Receivable for the world's largest seaplane fleet.</p>
+    
+    <div class="status-grid">
+        <div class="status-item">
+            <div class="label">Role</div>
+            <div class="value">Accountant (AR Lead)</div>
         </div>
+        
+        <div class="status-item">
+            <div class="label">Primary Tool</div>
+            <div class="value">Oracle Fusion Cloud</div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="label">Collection Strategy Optimization</div>
+    <div class="progress-container">
+        <div class="progress-fill" style="width: 85%;"></div>
+    </div>
+    <p style="font-size: 0.8rem; color: #7f8c8d; margin-top: 2px;">85% - Process Implemented</p>
+
+    <br>
+
+    <div class="label">KPI Dashboard Integration</div>
+    <div class="progress-container">
+        <div class="progress-fill" style="width: 60%; background-color: #f39c12;"></div>
+    </div>
+    <p style="font-size: 0.8rem; color: #7f8c8d; margin-top: 2px;">60% - In Development</p>
+</div>
 
 <div class="card">
     <h2>Technology Stack</h2>
@@ -203,6 +273,9 @@
         </div>
 
     </div>
-
+<footer style="text-align: center; padding: 20px; color: #bdc3c7; font-size: 0.9rem;">
+    <p>&copy; 2025 Amila Nandasiri. All rights reserved.</p>
+    <p>Built with <i class="fa-solid fa-code"></i> and Hosted on GitHub Pages.</p>
+</footer>
 </body>
 </html>
