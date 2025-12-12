@@ -6,7 +6,6 @@
     <title>Amila Nandasiri | Finance & Tech Portfolio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -40,7 +39,7 @@
             padding: 20px;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HEADER --- */
         header { text-align: center; padding: 60px 20px; }
 
         .profile-pic {
@@ -82,7 +81,7 @@
         
         .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color); }
 
-        /* --- SECTIONS GENERAL --- */
+        /* --- SECTIONS --- */
         .section-title {
             margin-top: 60px; margin-bottom: 20px; font-size: 1.8rem;
             border-left: 5px solid var(--accent-color); padding-left: 15px;
@@ -96,50 +95,229 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* --- ACTIVITIES GALLERY --- */
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        /* --- GALLERIES & GRIDS --- */
+        .gallery-grid, .tech-grid, .projects-grid {
+            display: grid; gap: 20px;
         }
+        .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .tech-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); text-align: center; }
+        .projects-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 
         .gallery-item {
             background: #f9fafb; border-radius: 12px; overflow: hidden;
             transition: transform 0.3s; border: 1px solid #e5e7eb;
         }
-
-        .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.05); }
-
+        .gallery-item:hover { transform: translateY(-5px); }
         .gallery-img { width: 100%; height: 180px; object-fit: cover; }
-
         .gallery-content { padding: 15px; }
         .gallery-title { font-weight: bold; margin-bottom: 5px; }
         .gallery-date { font-size: 0.8rem; color: var(--accent-color); font-weight: 600; }
-
-        /* --- TECH SKILLS GRID --- */
-        .tech-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 20px; text-align: center;
-        }
 
         .tech-item {
             background: #f3f4f6; padding: 20px; border-radius: 12px; transition: background 0.3s;
         }
         .tech-item:hover { background: #e5e7eb; }
         .tech-item i { font-size: 2rem; color: var(--accent-color); margin-bottom: 10px; }
-        .tech-item span { font-weight: 500; }
 
-        /* --- MAP & TRAVEL SECTION --- */
+        /* --- MAP STYLES --- */
         #map {
             height: 500px; width: 100%; border-radius: 12px;
-            border: 1px solid #e5e7eb; z-index: 1; /* Low z-index so modal sits on top */
+            border: 1px solid #e5e7eb; z-index: 1;
         }
-
-        /* Styling the Popup Image inside the map */
+        /* Popup Image Style */
         .leaflet-popup-content img {
-            width: 100%; border-radius: 8px; margin-top: 5px; cursor: zoom-in;
+            width: 100%; 
+            max-width: 250px; 
+            border-radius: 8px; 
+            margin-top: 5px; 
+            cursor: pointer;
             border: 2px solid var(--accent-color);
         }
         .leaflet-popup-content b { font-size: 1.1rem; color: var(--accent-dark); }
-        .leaflet-popup-content p { margin: 5px 0 0 0; font-size: 0.9rem; }
 
-        /* --- PROJECTS LAB SECTION ---
+        /* --- PROJECTS SECTION --- */
+        .project-card {
+            background: white; padding: 25px; border-radius: 12px;
+            border: 1px solid #e5e7eb; transition: transform 0.3s;
+            display: flex; flex-direction: column;
+            border-left: 4px solid var(--accent-color);
+        }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .project-card h3 { margin-bottom: 10px; color: var(--text-main); }
+        .project-card p { color: #666; margin-bottom: 20px; flex-grow: 1; }
+        .repo-btn {
+            text-align: center; background: #f3f4f6; color: var(--text-main);
+            padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600;
+            transition: background 0.2s;
+        }
+        .repo-btn:hover { background: var(--accent-color); color: white; }
+
+        /* --- IMAGE OVERLAY (Lightbox) --- */
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 9999; display: none;
+            justify-content: center; align-items: center;
+        }
+        #overlay img { max-width: 90%; max-height: 90%; border-radius: 5px; box-shadow: 0 0 20px white; }
+        #close-overlay {
+            position: absolute; top: 20px; right: 30px; color: white; font-size: 3rem; cursor: pointer;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center; padding: 50px 20px; color: var(--text-muted);
+            border-top: 1px solid #e5e7eb; margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay" onclick="closeImage()">
+        <span id="close-overlay">&times;</span>
+        <img id="overlay-img" src="">
+    </div>
+
+    <div class="container">
+        
+        <header>
+            <img src="profile.jpg" alt="Amila Nandasiri" class="profile-pic">
+            <h1>Amila Nandasiri</h1>
+            <p class="subtitle">Strategic Finance Director & Tech Explorer</p>
+            <div class="cta-group">
+                <a href="#" class="btn"><i class="fa-solid fa-download"></i> Download CV</a>
+                <a href="https://www.linkedin.com/in/amila-devapriya" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </header>
+
+        <h2 class="section-title">Professional Summary</h2>
+        <div class="card">
+            <p style="font-size: 1.1rem; color: var(--text-main);">
+                An experienced <strong>Head of Finance</strong> and <strong>Strategic Advisor</strong> with a passion for bridging the gap between financial data and technology. 
+                Currently optimizing aviation revenue streams in the Maldives while expanding my technical expertise in Web Development.
+            </p>
+        </div>
+
+        <h2 class="section-title">Activities & Training</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=400" alt="Training" class="gallery-img">
+                <div class="gallery-content">
+                    <div class="gallery-title">Leadership Workshop</div>
+                    <div class="gallery-date">Dec 2024 - Maldives</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=400" alt="Team Building" class="gallery-img">
+                <div class="gallery-content">
+                    <div class="gallery-title">Team Outbound</div>
+                    <div class="gallery-date">Nov 2024 - Philippines</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=400" alt="Conference" class="gallery-img">
+                <div class="gallery-content">
+                    <div class="gallery-title">Finance Summit</div>
+                    <div class="gallery-date">Oct 2024 - Singapore</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="card">
+            <div class="tech-grid">
+                <div class="tech-item"><i class="fa-solid fa-database"></i><br><span>Oracle</span></div>
+                <div class="tech-item"><i class="fa-solid fa-file-invoice-dollar"></i><br><span>QuickBooks</span></div>
+                <div class="tech-item"><i class="fa-solid fa-calculator"></i><br><span>AccPac</span></div>
+                <div class="tech-item"><i class="fa-brands fa-html5"></i><br><span>HTML5</span></div>
+                <div class="tech-item"><i class="fa-brands fa-github"></i><br><span>GitHub</span></div>
+            </div>
+        </div>
+
+        <h2 class="section-title">My Global Journey</h2>
+        <div class="card">
+            <p style="margin-bottom: 15px; color: var(--text-muted);">
+                Click on the markers to see photos from my travels. (Click the photo inside the popup to enlarge it).
+            </p>
+            <div id="map"></div>
+        </div>
+
+        <h2 class="section-title">Projects Portfolio</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <h3><i class="fa-solid fa-plane-departure"></i> Aviation Optimization</h3>
+                <p>An ongoing project analyzing revenue streams for seaplane operations. Includes data visualization and forecasting models.</p>
+                <a href="#" class="repo-btn"><i class="fa-brands fa-github"></i> View Repository</a>
+            </div>
+
+            <div class="project-card">
+                <h3><i class="fa-solid fa-cloud-rain"></i> Rainfall Tracker</h3>
+                <p>A web application to track and visualize seasonal rainfall patterns in the Maldives using historical data.</p>
+                <a href="#" class="repo-btn"><i class="fa-brands fa-github"></i> View Repository</a>
+            </div>
+
+            <div class="project-card">
+                <h3><i class="fa-solid fa-code"></i> Future Project</h3>
+                <p>Provision for upcoming financial modeling tools and automated reporting scripts.</p>
+                <a href="#" class="repo-btn"><i class="fa-brands fa-github"></i> Coming Soon</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Amila Nandasiri.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Built with <i class="fa-solid fa-code"></i> & Hosted on GitHub Pages</p>
+    </footer>
+
+    <script>
+        // --- 1. MAP INITIALIZATION ---
+        var map = L.map('map').setView([10.0, 105.0], 4); 
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19, attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // --- 2. LOCATION DATA (Using exact filenames requested) ---
+        // Note: I have used .jpg instead of .gpg because .gpg is for encryption keys, not images.
+        // Please save your images as .jpg
+        var locations = [
+            { name: "Philippines", coords: [14.5995, 120.9842], img: "Philippines.jpg" },
+            { name: "Vietnam", coords: [21.0285, 105.8542], img: "Vietnam.jpg" },
+            { name: "Cambodia", coords: [12.5657, 104.9910], img: "Cambodia.jpg" },
+            { name: "Malaysia", coords: [4.2105, 101.9758], img: "Malaysia.jpg" },
+            { name: "Singapore", coords: [1.3521, 103.8198], img: "Singapore.jpg" },
+            { name: "Maldives", coords: [3.2028, 73.2207], img: "maldives.jpg" }
+        ];
+
+        // --- 3. CREATE MARKERS ---
+        locations.forEach(function(loc) {
+            // content inside the popup
+            var popupContent = `
+                <div style="text-align:center">
+                    <b>${loc.name}</b><br>
+                    <img src="${loc.img}" alt="${loc.name}" onclick="enlargeImage('${loc.img}')">
+                    <p style="font-size:0.8rem; color:#666;">Click image to enlarge</p>
+                </div>
+            `;
+            
+            L.marker(loc.coords).addTo(map).bindPopup(popupContent);
+        });
+
+        // --- 4. LIGHTBOX FUNCTIONALITY ---
+        function enlargeImage(src) {
+            var overlay = document.getElementById('overlay');
+            var overlayImg = document.getElementById('overlay-img');
+            
+            overlayImg.src = src;
+            overlay.style.display = 'flex';
+        }
+
+        function closeImage() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
