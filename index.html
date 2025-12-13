@@ -253,7 +253,9 @@
             <div class="project-card">
                 <h3><i class="fa-solid fa-cloud-rain"></i> Rainfall Tracker</h3>
                 <p>A web application to track and visualize seasonal rainfall patterns in the Maldives using historical data.</p>
-                <a href="#" class="repo-btn"><i class="fa-brands fa-github"></i> View Repository</a>
+                <a href="https://amila-nandasiri.github.io/rainfall-dashboard/" target="_blank" class="repo-btn">
+                    <i class="fa-solid fa-chart-line"></i> View Live Dashboard
+                </a>
             </div>
 
             <div class="project-card">
@@ -279,21 +281,18 @@
             maxZoom: 19, attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        // --- 2. LOCATION DATA (Using exact filenames requested) ---
-        // Note: I have used .jpg instead of .gpg because .gpg is for encryption keys, not images.
-        // Please save your images as .jpg
+        // --- 2. LOCATION DATA ---
         var locations = [
             { name: "Philippines", coords: [14.5995, 120.9842], img: "Philippines.jpg" },
             { name: "Vietnam", coords: [21.0285, 105.8542], img: "Vietnam.jpg" },
             { name: "Cambodia", coords: [12.5657, 104.9910], img: "Cambodia.jpg" },
             { name: "Malaysia", coords: [4.2105, 101.9758], img: "Malaysia.jpg" },
             { name: "Singapore", coords: [1.3521, 103.8198], img: "Singapore.jpg" },
-            { name: "Maldives", coords: [3.2028, 73.2207], img: "maldives.jpg" }
+            { name: "Maldives", coords: [3.2028, 73.2207], img: "Maldives.jpg" }
         ];
 
         // --- 3. CREATE MARKERS ---
         locations.forEach(function(loc) {
-            // content inside the popup
             var popupContent = `
                 <div style="text-align:center">
                     <b>${loc.name}</b><br>
